@@ -1,0 +1,74 @@
+## Bing
+Here is the explanation of the error message from DevTools console:
+- Error message: The error message is Form submission canceled because the form is not connected . This means that the browser aborted the form submission because the form element was not associated with the document.
+- Possible cause: This error may occur when you have a submit button and an onClick handler in the same form. The browser tries to submit the form to the current URL via the submit button, but the onClick handler removes the form from the DOM before the submit event is triggered .
+- Possible solution: To fix this error, you can either change the button type to button or remove the onClick handler from the form. Alternatively, you can prevent the form's default behavior by calling e.preventDefault() in the onClick handler.
+- Example code: Here is an example of a React form component that causes this error and how to fix it:
+
+// This code causes the error
+function Form () {
+  const handleSubmit = (e) => {
+    // Some logic to handle the form submission
+  };
+  return (
+    <form onSubmit={handleSubmit} method="post">
+      <label>
+        Enter Text :
+        <TextField
+          name="inputText"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        />
+      </label>
+      <Button type="submit" name="Submit">
+        SUBMIT
+      </Button>
+    </form>
+  );
+}
+
+// This code fixes the error by changing the button type to button
+function Form () {
+  const handleSubmit = (e) => {
+    // Some logic to handle the form submission
+  };
+  return (
+    <form onSubmit={handleSubmit} method="post">
+      <label>
+        Enter Text :
+        <TextField
+          name="inputText"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        />
+      </label>
+      <Button type="button" onClick={handleSubmit} name="Submit">
+        SUBMIT
+      </Button>
+    </form>
+  );
+}
+
+// This code fixes the error by preventing the form's default behavior
+function Form () {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // This prevents the form submission
+    // Some logic to handle the form submission
+  };
+  return (
+    <form onSubmit={handleSubmit} method="post">
+      <label>
+        Enter Text :
+        <TextField
+          name="inputText"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        />
+      </label>
+      <Button type="submit" name="Submit">
+        SUBMIT
+      </Button>
+    </form>
+  );
+}
+

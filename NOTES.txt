@@ -1,0 +1,295 @@
+WEBSITEs/LINKS:
+	https://getbootstrap.com/docs/5.3/components/
+	https://react.dev/learn/describing-the-ui
+	https://colorhunt.co/palettes/
+	https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components/
+	https://newsapi.org/docs/get-started
+	https://www.npmjs.com/package/react-infinite-scroll-component
+	https://www.npmjs.com/package/react-top-loading-bar
+
+API : 27c55a1a2cd64181939cf109cf1fe0ae
+
+	https://youtu.be/fg_Rc5cBAK8?si=tqTHFLRtoAwtor0w
+
+package.json:
+	"start": "react-scripts start",
+
+|===========================================================================================================|
+|																											|
+|	TO CONVERT CLASS BASED COMPONENT TO FUNCTION BASED components 											|
+|		1: change class to function 																		|
+|			export class NavBar extends Component TO const NavBar = () => {}								|
+|		2:  remove render() {} 																				|
+|		3:  if class is using "property/props" then just remove 'this.' FROM 'this.props' 					|
+|				const NewsItem = (props) => 																|
+|				{ 																							|
+|					let {title, description, imageUrl, newsUrl} = props; 									|
+|					return() 																				|
+|				} 																							|
+|		4:  convert props of Class component to Function component 											|
+|				take state propType to end of file (before export statement) & convert it into functional 	|
+|					Navbar.propTypes =  																	|
+|					{ 																						|
+|						title: PropTypes.string.isRequired, 												|
+|						about: PropTypes.string 															|
+|					} 																						|
+|		5:  	this.state = { 																				|
+|					articles: this.articles, 																|
+|		 			loading: false, //something is loading than this won't be shown 						|
+|		 			totalResults: 10 																		|
+|		 		} 																							|
+|				TO  																						|
+|				const state = async () => { 																|
+|					setTotalResults(10) 																	|
+|				} 																							|
+|																											|
+|===========================================================================================================|
+
+
+
+Bootstrap:
+	https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+in App.js after return( write <>at first line & at last</>);
+	function App() 
+	{
+	  	return (
+	    	<>
+	    	</>
+	  	);
+	}
+
+
+declare variables outside of function App() by using use let,var or const
+	let name = "Megha";
+	function App() 
+	{
+		return ();
+	}
+
+Add bootstap css link & script to public->index.html ,link into head tag & script after body end tag
+
+Add navbar code from bootstrap->components->navbar (https://getbootstrap.com/docs/5.3/components/navbar/) in src->App.js->function App(){return("//navbar code");} "CLOSE ALL SINGLE TAGS BY ADDING '/' AT THE END OF TAG BEFORE '>' 
+	CHANGE href="#" TO href="/" "
+	CHANGE navbar to "appname",Link to "About"
+	REMOVE <li> tags of className "nav-item dropdown" & "nav-item"
+
+
+CREATE NEW FOLDER "Components" inside "src" folder & put all component js file in it with always first letter of file name CAPITAL
+	EXAMPLE : 
+		import React from 'react'
+		export default function Navbar()
+		{
+			return(
+				<div> NAVBAR </div>
+			)
+		}
+
+Add component js file to App.js <componentName />
+	<Navbar/> 
+	or
+	AS " import Navbar from './Components/Navbar'; "
+
+	PASTE Navbar code from " bootstrap->components->navbar (https://getbootstrap.com/docs/5.3/components/navbar/) "
+
+PROPERTY TYPES : 
+	PropTypes.array,
+	PropTypes.bool,
+	PropTypes.func,
+	PropTypes.number,
+	PropTypes.object,
+	PropTypes.string,
+	PropTypes.symbol,
+	PropTypes.node,
+	PropTypes.element,
+	PropTypes.elementType,
+	PropTypes.instanceOf(Message),
+	PropTypes.oneOf(['News', 'Photos']),
+	PropTypes.oneOfType([
+	    PropTypes.string,
+	    PropTypes.number,
+	    PropTypes.instanceOf(Message)
+	]),
+	PropTypes.arrayOf(PropTypes.number),
+	PropTypes.objectOf(PropTypes.number),
+	PropTypes.shape({
+	    color: PropTypes.string,
+	    fontSize: PropTypes.number
+	}),
+	PropTypes.exact({
+	    name: PropTypes.string,
+	    quantity: PropTypes.number
+	}),
+	PropTypes.func.isRequired,
+	PropTypes.any.isRequired,
+	arrayOf(function(propValue, key, componentName, location, propFullName)
+	{
+	    if (!/matchme/.test(propValue[key]))
+	    {
+	      return new Error('Invalid prop `' + propFullName + '` supplied to' + ' `' + componentName + '`. Validation failed.');
+	    }
+	}
+
+TO GET TITLE FROM USER SO JUST ADD PARAMETER(PROPERTY) TO export default function Navbar('PROPERTY')
+	Navbar.js
+		import React from 'react'
+		export default function Navbar(props)
+		{
+			return(
+				<a className="navbar-brand" href="/">{property.title}</a>
+			  	<a className="nav-link" href="/">{property.about}</a>
+			)
+		}
+	App.js //AFTER IMPORTING Navbar.js
+		<Navbar title="New" about="About Us" /> 
+
+TO GIVE PATTERN/FORMAT to Property Type to props
+https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
+	import prop-type & give format as PropTypes.string
+		import PropTypes from 'prop-types'
+
+	Add property to end of component file
+		Navbar.js
+			Navbar.propTypes = 
+			{
+				title: PropTypes.string,
+				about: PropTypes.string
+			}
+
+	ADD Default Props
+		Navbar.js
+			Navbar.defaultProps = 
+			{
+				title: "Set Title Here",
+				about: "Set About Here"
+			}
+		App.js
+			<Navbar/> 
+
+	MAKE title REQUIRED
+		Navbar.js
+			Navbar.propTypes = 
+			{
+				title: PropTypes.string.isRequired,
+				about: PropTypes.string
+			}
+		App.js
+			<Navbar/> //ERROR WILL BE SHOWN ON INSPECT->CONSOLE
+			<Navbar title="New" /> //WILL RUN
+
+CREATE TextForm component file (https://getbootstrap.com/docs/5.3/forms/form-control/)
+	TextForm.js
+		import React from 'react'
+		import PropTypes from 'prop-types'
+
+		export default function TextForm(property)
+		{
+			return(
+				<div>
+					<h1>{property.heading}</h1>
+					<div className="mb-3">
+						<textarea className="form-control" id="text" rows="4"></textarea>
+					</div>
+					<button className="btn btn-primary"> UpperCase </button>
+				</div>
+			)
+		}
+		TextForm.propTypes=
+		{
+			heading: PropTypes.string.isRequired
+		}
+	App.js
+		<div className="container my-3">
+			<TextForm heading="TextArea"/>
+		</div>
+
+BUTTONS : https://getbootstrap.com/docs/5.3/components/buttons/
+
+HOOKS
+import React, { useState } from 'react';
+https://legacy.reactjs.org/docs/hooks-intro.html
+	works like getter setter method
+
+
+Alerts : https://getbootstrap.com/docs/5.3/components/alerts/
+
+
+key value api check karvanu ke kai key 6 success hoy to eno sysmbol & msg & type alertbox ma ape
+
+textform ma og update krvu
+don't count null string
+
+
+==========================================================================================================================================================
+
+REACT ROUTER DOM (video-16)
+		(https://v5.reactrouter.com/web/guides/quick-start)
+		(https://reactrouter.com/en/main)
+
+WRITTEN IN App.js
+
+	import React from "react";
+	import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+
+Router is parent for Routes, Route
+Routes is parent of Route
+Route have path & element as parameters where, path will be render at (eg. /about,/user,) element call imported js file (eg. </About>)
+change a => Link & href => to
+To add multiple pages in 1 element add all pages in 1 main tag (eg. <div>pages</div>)
+
+==========================================================================================================================================================
+Class Based Components 
+
+	Functon Based Components & Class Based Componenents
+	=> FBC is about how things LOOKS,
+		contains DOM & styles,
+		collect/read data & callbacks via props(propery) 
+		is AKA Presentational Componenet
+	
+	=> CBC is about how things WORKS,
+		uses render(),
+		contains logic,p
+		rovide data to presentational components,
+		calls methods & provide back to presentational components 
+		is AKA Container Component
+
+	To declare variable direct write variable name & value no need to use let or var
+	To use variable need to use "this" (this.variableName)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================================================================================================
+npm i redux react-redux redux-thunk

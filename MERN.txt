@@ -1,0 +1,124 @@
+
+====================================================================================================================================================================
+
+	MERN => MpongoDB,Express,React, Node
+
+	MpongoDB : Document Database
+	Express  : Node.js Web Framework
+	React	 : Client-side JavaScript Framework
+	Node	 : Premier JavaScript Web Server
+
+	https://www.mongodb.com/try/download/community
+	https://www.mongodb.com/docs/
+		https://www.mongodb.com/docs/compass/current/query/queries/?utm_source=compass&utm_medium=product
+
+
+	https://expressjs.com/
+		https://expressjs.com/en/starter/generator.html
+
+
+	https://github.com/expressjs/express/tree/master/examples
+		Express examples => This page contains list of examples using Express.
+			auth - Authentication with login and password
+			content-negotiation - HTTP content negotiation
+			cookie-sessions - Working with cookie-based sessions
+			cookies - Working with cookies
+			downloads - Transferring files to client
+			ejs - Working with Embedded JavaScript templating (ejs)
+			error-pages - Creating error pages
+			error - Working with error middleware
+			hello-world - Simple request handler
+			markdown - Markdown as template engine
+			multi-router - Working with multiple Express routers
+			multipart - Accepting multipart-encoded forms
+			mvc - MVC-style controllers
+			online - Tracking online user activity with online and redis packages
+			params - Working with route parameters
+			resource - Multiple HTTP operations on the same resource
+			route-map - Organizing routes using a map
+			route-middleware - Working with route middleware
+			route-separation - Organizing routes per each resource
+			search - Search API
+			session - User sessions
+			static-files - Serving static files
+			vhost - Working with virtual hosts
+			view-constructor - Rendering views dynamically
+			view-locals - Saving data in request object between middleware calls
+			web-service - Simple API service
+
+	https://github.com/prisma/prisma-examples/tree/latest/typescript
+		Additional examples => These are some additional examples with more extensive integrations.
+			prisma-express-graphql - GraphQL API with express-graphql using Prisma as an ORM
+			prisma-fullstack - Fullstack app with Next.js using Prisma as an ORM
+			prisma-rest-api-js - REST API with Express in JavaScript using Prisma as an ORM
+			prisma-rest-api-ts - REST API with Express in TypeScript using Prisma as an ORM
+
+	https://mongoosejs.com/ const mongoose = require
+	('mongoose'); mongoose.connect('mongodb://127.0.0.1:27017/test');
+
+		const Cat = mongoose.model('Cat', { name: String });
+
+		const kitty = new Cat({ name: 'Zildjian' });
+		kitty.save().then(() => console.log('meow'));
+
+====================================================================================================================================================================
+
+
+After Creatin app create new folder for backend
+
+than in command promp 
+	C:\Users\Dell\Desktop\APPEGIC\inotebook>cd backend
+	C:\Users\Dell\Desktop\APPEGIC\inotebook\backend>npm init
+
+		pcg name= inotebook-backend
+		desc = iNotebook - Your notebook on cloud
+		yes
+
+	npm i express
+	npm i sequelize
+	npm i mysql2
+//	npm i mongoose
+//	npm i -D nodemon // -D means devdependeccies
+
+
+http://localhost/phpmyadmin/index.php?route=/sql&db=springjdbc&table=image&pos=0
+
+====================================================================================================================================================================
+
+MONGODB
+
+open mongoose compass then click connect
+Connection String => mongodb://localhost:27017
+
+	create db.js file in backend folder
+		const mongoose = require('mongoose');
+		const mongoURI = "mongodb://localhost:27017";
+		const connectToMongo = () => {
+			mongoose.connect(mongoURI, () => {
+				console.log("Connected to Mongo DB Successfully")
+			})
+		}
+		module.exports = connectToMongo;
+
+
+====================================================================================================================================================================
+
+
+
+create db.js file in backend folder
+	
+	const mongoose = require('mongoose');
+	const mongoURI = "mongodb://localhost:27017";
+	const connectToMongo = () => {
+		mongoose.connect(mongoURI, () => {
+			console.log("Connected to Mongo DB Successfully")
+		})
+	}
+	module.exports = connectToMongo;
+
+create index.js file in backend folder
+	const connectToMong = require('./db');const
+	connectToMongo();
+
+Command Prompt: 
+	npx nodemon .\index.js

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript">
+		"use strict";
+		let a=1;
+		console.log(a);
+		function h()
+		{
+			console.log("h");
+		}
+		let obj =
+		{
+			r: 8,
+			m: 98,
+			func: function f(n)
+			{
+				console.log("N = " + n);
+			}
+		}
+
+		document.addEventListener("click", function click()
+			{
+				console.log("CLICKED");
+				alert("WHY?");
+				let conf = confirm("done");
+				console.log(conf);
+			}
+		)
+		console.log(this);
+		function num(n)
+		{
+			console.log("n = " + this);
+		}
+		num();
+		let num1 = (n)=>
+		{
+			console.log("n1 = " + this);
+		}
+		num1();
+		let nobj = 
+		{
+			b:this,
+			num2 : (n)=>
+			{
+				console.log("nobj = " + this);
+			}
+		}
+		nobj.num2();
+		console.log(nobj.b);
+
+		setTimeout(() => 
+			{
+				console.log("2nd ater 5 sec(5000 ms)")
+			},5000//5 sec
+		);
+		console.log("1st") 
+
+	</script>
+</head>
+<body>
+	<h1>js</h1>
+</body>
+</html>
